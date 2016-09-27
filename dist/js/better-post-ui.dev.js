@@ -55,11 +55,11 @@ jQuery.expr[':'].contains = function(a, i, m) {
 BetterPostUi = BetterPostUi || {};
 BetterPostUi.Components = BetterPostUi.Components || {};
 
-BetterPostUi.Components.PageAttributes = (function ($) {
+BetterPostUi.Components.Parent = (function ($) {
 
     var typingTimer;
 
-    function PageAttributes() {
+    function Parent() {
         $('[data-action="better-post-ui-parent-show-all"]').on('click', function (e) {
             e.preventDefault();
             this.showList();
@@ -87,17 +87,17 @@ BetterPostUi.Components.PageAttributes = (function ($) {
         }.bind(this));
     }
 
-    PageAttributes.prototype.showList = function() {
+    Parent.prototype.showList = function() {
         $('.better-post-ui-parent-search').hide();
         $('.better-post-ui-parent-list').show();
     };
 
-    PageAttributes.prototype.showSearch = function() {
+    Parent.prototype.showSearch = function() {
         $('.better-post-ui-parent-list').hide();
         $('.better-post-ui-parent-search').show();
     };
 
-    PageAttributes.prototype.setParent = function(id, title) {
+    Parent.prototype.setParent = function(id, title) {
         $('[data-action="better-post-ui-parent-search"]').val('');
         $('.better-post-ui-search-parent-list').remove();
 
@@ -106,7 +106,7 @@ BetterPostUi.Components.PageAttributes = (function ($) {
         this.showList();
     };
 
-    PageAttributes.prototype.search = function (query, postType) {
+    Parent.prototype.search = function (query, postType) {
         clearTimeout(typingTimer);
         $('.better-post-ui-search-parent-list').remove();
 
@@ -126,7 +126,7 @@ BetterPostUi.Components.PageAttributes = (function ($) {
         }, 'JSON');
     };
 
-    return new PageAttributes();
+    return new Parent();
 
 })(jQuery);
 
