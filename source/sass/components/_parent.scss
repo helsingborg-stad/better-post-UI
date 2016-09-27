@@ -1,8 +1,3 @@
-.better-post-ui-parent-search,
-.better-post-ui-parent-list {
-    padding: 6px 0 0 0;
-}
-
 .better-post-ui-parent-search {
     display: none;
 }
@@ -37,5 +32,5 @@ a.button[data-action="better-post-ui-parent-show-all"] {
 
 input[data-action="better-post-ui-parent-search"],
 .better-post-ui-parent-list select#parent_id  {
-    margin: 5px 0 0 0;
+    display: block;
 }

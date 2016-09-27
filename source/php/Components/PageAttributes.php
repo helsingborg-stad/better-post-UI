@@ -31,24 +31,23 @@ class PageAttributes
         );
     }
 
+    /**
+     * The contents of the pageattributes div
+     * @param  object $post Current post object
+     * @return void
+     */
     public function pageAttributesDivContent($post)
     {
-        $dropdown_args = array(
-            'post_type'        => $post->post_type,
-            'exclude_tree'     => $post->ID,
-            'selected'         => $post->post_parent,
-            'name'             => 'parent_id',
-            'show_option_none' => __('(no parent)'),
-            'sort_column'      => 'menu_order, post_title',
-            'echo'             => 0,
-        );
-
-        $dropdown_args = apply_filters('page_attributes_dropdown_pages_args', $dropdown_args, $post);
-        $pages = wp_dropdown_pages($dropdown_args);
-
+        $postTypeObject = get_post_type_object($post->post_type);
         include BETTERPOSTUI_TEMPLATE_PATH . 'pageparentdiv.php';
     }
 
+    /**
+     * Search parent
+     * @param  string $query    Search query
+     * @param  string $postType Post type
+     * @return array            Found posts
+     */
     public function searchParent($query = null, $postType = null)
     {
         if (defined('DOING_AJAX') && DOING_AJAX) {

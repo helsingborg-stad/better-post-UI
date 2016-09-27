@@ -225,9 +225,18 @@
     font-weight: bold;
     font-size: 1.2em; }
 
-.better-post-ui-parent-search,
-.better-post-ui-parent-list {
-  padding: 6px 0 0 0; }
+#pageparentdiv .inside {
+  padding: 0;
+  margin-top: 0; }
+
+#pageparentdiv section {
+  padding: 12px; }
+  #pageparentdiv section strong {
+    display: inline-block;
+    margin-bottom: 5px; }
+
+#pageparentdiv section + section {
+  border-top: 1px solid #ddd; }
 
 .better-post-ui-parent-search {
   display: none; }
@@ -254,4 +263,8 @@ a.button[data-action="better-post-ui-parent-show-all"] {
 
 input[data-action="better-post-ui-parent-search"],
 .better-post-ui-parent-list select#parent_id {
-  margin: 5px 0 0 0; }
+  display: block; }
+
+.better-post-ui-template select {
+  display: block;
+  width: 100%; }
