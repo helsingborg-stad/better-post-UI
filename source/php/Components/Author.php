@@ -16,22 +16,24 @@ class Author
      */
     public function authorDiv()
     {
-        //__('Page manager', 'municipio-intranet')
-        foreach (get_post_types() as $postType) {
-            if (!post_type_supports($postType, 'author')) {
-                continue;
-            }
+        $postType = get_post_type();
+        $postTypeObject = get_post_type_object($postType);
 
-            remove_meta_box('authordiv', $postType, 'normal');
-            add_meta_box(
-                'authordiv',
-                __('Author'),
-                array($this, 'authorDivContent'),
-                $postType,
-                'normal',
-                'default'
-            );
+        // Checks if authordiv should exist
+        if (!post_type_supports($postType, 'author') || (!is_super_admin() && !current_user_can($postTypeObject->cap->edit_others_posts))) {
+            return;
         }
+
+        // Remove the default authordiv and add our own
+        remove_meta_box('authordiv', $postType, 'normal');
+        add_meta_box(
+            'authordiv',
+            __('Author'),
+            array($this, 'authorDivContent'),
+            null,
+            'normal',
+            'default'
+        );
     }
 
     public function authorDivContent()

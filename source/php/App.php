@@ -10,6 +10,7 @@ class App
         add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'));
 
         new \BetterPostUi\Components\Author();
+        new \BetterPostUi\Components\PageAttributes();
     }
 
     /**
