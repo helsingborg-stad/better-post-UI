@@ -268,3 +268,47 @@ input[data-action="better-post-ui-parent-search"],
 .better-post-ui-template select {
   display: block;
   width: 100%; }
+
+.better-post-ui-menu-order-list {
+  margin: 0;
+  padding: 0; }
+  .better-post-ui-menu-order-list * {
+    box-sizing: border-box; }
+  .better-post-ui-menu-order-list li {
+    position: relative;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    color: #23282d;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-wrap: ellipsis;
+    font-size: 0; }
+    .better-post-ui-menu-order-list li.current {
+      border-color: #0073aa;
+      background-color: #c9e1eb; }
+      .better-post-ui-menu-order-list li.current button {
+        border-right: 1px solid #0073aa; }
+    .better-post-ui-menu-order-list li * {
+      font-size: 13px; }
+    .better-post-ui-menu-order-list li span {
+      display: inline-block;
+      padding: 5px 10px 5px 5px;
+      vertical-align: middle;
+      margin-left: 25px; }
+    .better-post-ui-menu-order-list li button {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.05);
+      border: none;
+      border-right: 1px solid #ddd;
+      width: 10px;
+      padding: 0;
+      cursor: pointer; }
+      .better-post-ui-menu-order-list li button:hover {
+        background-color: #e8e8e8; }
+    .better-post-ui-menu-order-list li button:last-of-type {
+      left: 10px; }

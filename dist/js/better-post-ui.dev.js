@@ -55,6 +55,28 @@ jQuery.expr[':'].contains = function(a, i, m) {
 BetterPostUi = BetterPostUi || {};
 BetterPostUi.Components = BetterPostUi.Components || {};
 
+BetterPostUi.Components.Order = (function ($) {
+
+    function Order() {
+        this.init();
+    }
+
+    Order.prototype.init = function () {
+        console.log("TEST");
+        $('.better-post-ui-menu-order-list').sortable({
+            stop: function (e, ui) {
+
+            }
+        }).bind(this);
+    };
+
+    return new Order();
+
+})(jQuery);
+
+BetterPostUi = BetterPostUi || {};
+BetterPostUi.Components = BetterPostUi.Components || {};
+
 BetterPostUi.Components.Parent = (function ($) {
 
     var typingTimer;
