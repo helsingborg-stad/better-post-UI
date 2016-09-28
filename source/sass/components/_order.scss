@@ -18,11 +18,8 @@
         font-size: 0;
 
         &.current {
-            border-color: #0073aa;
-            background-color: #c9e1eb;
-
-            button {
-                border-right: 1px solid #0073aa;
+            span {
+                font-weight: bold;
             }
         }
 

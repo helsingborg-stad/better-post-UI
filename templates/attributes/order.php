@@ -5,11 +5,10 @@ $orderPages = get_pages(array(
     'sort_column' => 'menu_order',
     'sort_order' => 'asc'
 ));
-
 ?>
 <section>
     <strong><?php _e('Order') ?></strong>
-    <p style="margin-top:0;"><?php _e('Drag or click the arrows to reorder.', 'better-post-ui'); ?></p>
+    <p style="margin-top:0;"><?php _e('Drag or click the arrows to reorder. The bold marked page is the post you are currently editing.', 'better-post-ui'); ?></p>
     <ul class="better-post-ui-menu-order-list">
         <?php foreach ($orderPages as $page) : ?>
         <li<?php echo $page->ID == $post->ID ? ' class="current"' : ''; ?>>

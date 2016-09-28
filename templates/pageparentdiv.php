@@ -8,4 +8,6 @@ if ('page' == $post->post_type && 0 != count(get_page_templates($post)) && get_o
     include('attributes/template.php');
 }
 
-include('attributes/order.php');
+if (get_current_screen()->action != 'add') {
+    include('attributes/order.php');
+}

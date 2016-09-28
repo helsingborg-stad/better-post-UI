@@ -11,6 +11,7 @@ class App
 
         new \BetterPostUi\Components\Author();
         new \BetterPostUi\Components\PageAttributes();
+        new \BetterPostUi\Components\Order();
     }
 
     /**

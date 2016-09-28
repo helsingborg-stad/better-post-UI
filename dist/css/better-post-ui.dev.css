@@ -284,11 +284,8 @@ input[data-action="better-post-ui-parent-search"],
     overflow: hidden;
     overflow-wrap: ellipsis;
     font-size: 0; }
-    .better-post-ui-menu-order-list li.current {
-      border-color: #0073aa;
-      background-color: #c9e1eb; }
-      .better-post-ui-menu-order-list li.current button {
-        border-right: 1px solid #0073aa; }
+    .better-post-ui-menu-order-list li.current span {
+      font-weight: bold; }
     .better-post-ui-menu-order-list li * {
       font-size: 13px; }
     .better-post-ui-menu-order-list li span {
