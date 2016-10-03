@@ -1,9 +1,10 @@
 <?php
-$orderPages = get_pages(array(
-    'parent' => $post->post_parent,
-    'hierarchical' => false,
-    'sort_column' => 'menu_order',
-    'sort_order' => 'asc'
+$orderPages = get_posts(array(
+    'posts_per_page' => -1,
+    'post_type' => $post->post_type,
+    'post_parent' => $post->post_parent,
+    'orderby' => 'menu_order title',
+    'order' => 'asc'
 ));
 ?>
 <section>

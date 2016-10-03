@@ -292,7 +292,7 @@ input[data-action="better-post-ui-parent-search"],
       display: inline-block;
       padding: 5px 10px 5px 5px;
       vertical-align: middle;
-      margin-left: 25px; }
+      margin-left: 35px; }
     .better-post-ui-menu-order-list li button {
       position: absolute;
       top: 0;
@@ -302,10 +302,10 @@ input[data-action="better-post-ui-parent-search"],
       background-color: rgba(0, 0, 0, 0.05);
       border: none;
       border-right: 1px solid #ddd;
-      width: 10px;
+      width: 15px;
       padding: 0;
       cursor: pointer; }
       .better-post-ui-menu-order-list li button:hover {
         background-color: #e8e8e8; }
     .better-post-ui-menu-order-list li button:last-of-type {
-      left: 10px; }
+      left: 15px; }

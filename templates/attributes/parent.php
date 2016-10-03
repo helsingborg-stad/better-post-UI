@@ -26,7 +26,7 @@ if (!empty($pages)) :
     <div class="better-post-ui-parent-search">
         <strong><?php _e('Search'); ?> <?php echo mb_strtolower(__('Parent')) ?></strong>
         <label class="screen-reader-text" for="parent_id"><?php _e('Parent') ?></label>
-        <input type="search" data-action="better-post-ui-parent-search" class="widefat" placeholder="<?php _e('Sök'); ?>…">
+        <input type="search" data-action="better-post-ui-parent-search" class="widefat" placeholder="<?php _e('Search'); ?>…">
 
         <a href="#" class="button" data-action="better-post-ui-parent-show-all"><?php _e('Cancel'); ?></a>
     </div>
