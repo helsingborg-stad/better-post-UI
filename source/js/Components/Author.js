@@ -24,7 +24,7 @@ BetterPostUi.Components.Author = (function ($) {
         $('.better-post-ui-author-select li.selected').removeClass('selected');
         $(element).closest('li').addClass('selected');
 
-        $('[name="post_author_override"]').val($(this).data('user-id'));
+        $('[name="post_author_override"]').val($(element).closest('li').attr('data-user-id'));
     };
 
     /**
