@@ -30,7 +30,7 @@ class Author
             'authordiv',
             __('Author'),
             array($this, 'authorDivContent'),
-            null,
+            $postType,
             'normal',
             'default'
         );

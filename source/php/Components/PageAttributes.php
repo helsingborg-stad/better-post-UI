@@ -25,7 +25,7 @@ class PageAttributes
             'pageparentdiv',
             'page' == $postType ? __('Page Attributes') : __('Attributes'),
             array($this, 'pageAttributesDivContent'),
-            null,
+            $postType,
             'side',
             'default'
         );
