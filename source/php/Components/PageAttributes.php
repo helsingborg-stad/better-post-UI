@@ -57,6 +57,7 @@ class PageAttributes
 
         $search = new \WP_Query(array(
             'post_type' => $postType,
+            'post_status' => array('publish', 'future', 'draft', 'pending', 'private'),
             's' => $query
         ));
 

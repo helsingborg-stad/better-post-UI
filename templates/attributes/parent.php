@@ -8,6 +8,7 @@ $dropdown_args = array(
     'show_option_none' => __('(no parent)'),
     'sort_column'      => 'menu_order, post_title',
     'echo'             => 0,
+    'post_status'      => array('publish', 'future', 'draft', 'pending', 'private')
 );
 
 $dropdown_args = apply_filters('page_attributes_dropdown_pages_args', $dropdown_args, $post);
