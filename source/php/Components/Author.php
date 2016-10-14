@@ -40,9 +40,11 @@ class Author
     {
         global $post;
 
-        $authors = get_users(array(
+        $args = apply_filters('BetterPostUi/authors', array(
             'who' => 'authors'
         ));
+
+        $authors = get_users($args);
 
         uasort($authors, function ($a, $b) use ($post) {
             if ($post->post_author == $a->ID) {

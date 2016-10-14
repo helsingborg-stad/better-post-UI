@@ -1,4 +1,7 @@
-<input type="hidden" name="post_author_override" value="<?php echo $post->post_author; ?>">
+<?php
+    $curentSelectedAuthorId = isset($post->post_author) && !empty($post->post_author) ? $post->post_author : get_current_user_id();
+?>
+<input type="hidden" name="post_author_override" value="<?php echo $curentSelectedAuthorId; ?>">
 
 <div class="better-post-ui-author-select-filter">
     <input type="text" placeholder="<?php _e('Search'); ?>" name="better-post-ui-author-select-filter">
@@ -6,7 +9,7 @@
 <ul class="better-post-ui-author-select">
     <?php
     foreach ($authors as $author) :
-    $selected = $post->post_author == $author->ID ? 'selected' : '';
+    $selected = $curentSelectedAuthorId == $author->ID ? 'selected' : '';
     ?>
     <li class="<?php echo $selected; ?>" data-user-id="<?php echo $author->ID; ?>">
         <?php if (get_user_meta($author->ID, 'user_profile_picture', true)) : ?>
