@@ -14,12 +14,34 @@ class App
         new \BetterPostUi\Components\Order();
     }
 
+    public function isEditPage()
+    {
+        global $pagenow;
+
+        if (!is_admin()) {
+            return false;
+        }
+
+
+        if ($new_edit == 'edit') {
+            return in_array($pagenow, array('post.php'));
+        } elseif ($new_edit == 'new') {
+            return in_array($pagenow, array('post-new.php'));
+        } else {
+            return in_array($pagenow, array('post.php', 'post-new.php'));
+        }
+    }
+
     /**
      * Enqueue required style
      * @return void
      */
     public function enqueueStyles()
     {
+        if (!$this->isEditPage()) {
+            return;
+        }
+
         wp_enqueue_style('better-post-ui', BETTERPOSTUI_URL . '/dist/css/better-post-ui.min.css', null, '1.0.0');
     }
 
@@ -29,6 +51,10 @@ class App
      */
     public function enqueueScripts()
     {
+        if (!$this->isEditPage()) {
+            return;
+        }
+
         wp_enqueue_script('better-post-ui', BETTERPOSTUI_URL . '/dist/js/better-post-ui.min.js', null, '1.0.0', true);
     }
 }
