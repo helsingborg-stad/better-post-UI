@@ -22,14 +22,7 @@ class App
             return false;
         }
 
-
-        if ($new_edit == 'edit') {
-            return in_array($pagenow, array('post.php'));
-        } elseif ($new_edit == 'new') {
-            return in_array($pagenow, array('post-new.php'));
-        } else {
-            return in_array($pagenow, array('post.php', 'post-new.php'));
-        }
+        return in_array($pagenow, array('post.php', 'post-new.php'));
     }
 
     /**
