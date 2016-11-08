@@ -51,11 +51,20 @@ class Author
                 return -1;
             }
 
-            if ($post->post_author == $b->ID) {
-                return 1;
+            $name = array(
+                'a' => trim(get_user_meta($a->ID, 'first_name', true) . ' ' . get_user_meta($a->ID, 'last_name', true)),
+                'b' => trim(get_user_meta($b->ID, 'first_name', true) . ' ' . get_user_meta($b->ID, 'last_name', true))
+            );
+
+            if (empty($name['a'])) {
+                $name['a'] = $a->data->display_name;
             }
 
-            return 0;
+            if (empty($name['b'])) {
+                $name['b'] = $b->data->display_name;
+            }
+
+            return strcmp($name['a'], $name['b']);
         });
 
         include BETTERPOSTUI_TEMPLATE_PATH . 'authordiv.php';
