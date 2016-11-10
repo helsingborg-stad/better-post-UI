@@ -15,14 +15,20 @@ class Order
             return;
         }
 
-        remove_all_actions('save_post');
-
         $siblingOrder = $_POST['sibling_menu_order'];
+        global $wpdb;
         foreach ($siblingOrder as $postId => $menuOrder) {
-            wp_update_post(array(
-                'ID' => $postId,
-                'menu_order' => $menuOrder
-            ));
+            $wpdb->update(
+                $wpdb->posts,
+                array(
+                    'menu_order' => $menuOrder
+                ),
+                array(
+                    'ID' => $postId
+                ),
+                array('%d'),
+                array('%d')
+            );
         }
 
         return true;
