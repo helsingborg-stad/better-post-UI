@@ -15,7 +15,7 @@ class Order
             return;
         }
 
-        remove_action('save_post', array($this, 'saveMenuOrder'), 10, 2);
+        remove_all_actions('save_post');
 
         $siblingOrder = $_POST['sibling_menu_order'];
         foreach ($siblingOrder as $postId => $menuOrder) {
@@ -24,8 +24,6 @@ class Order
                 'menu_order' => $menuOrder
             ));
         }
-
-        add_action('save_post', array($this, 'saveMenuOrder'), 10, 2);
 
         return true;
     }

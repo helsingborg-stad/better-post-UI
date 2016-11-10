@@ -14,7 +14,8 @@
      */
     do_action( 'page_attributes_meta_box_template', $template, $post );
     ?>
-    <label class="screen-reader-text" for="page_template"><?php _e('Page Template') ?></label><select name="page_template" id="page_template">
+    <label class="screen-reader-text" for="page_template"><?php _e('Page Template') ?></label>
+    <select name="page_template" id="page_template">
     <?php
     /**
      * Filters the title of the default page template displayed in the drop-down.
