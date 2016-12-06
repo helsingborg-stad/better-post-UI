@@ -3,6 +3,9 @@ BetterPostUi.Components = BetterPostUi.Components || {};
 
 BetterPostUi.Components.Author = (function ($) {
 
+    var inputTimer = false;
+    var isTyping = false;
+
     function Author() {
         // Select author from list
         $('.better-post-ui-author-select li').on('click', function (e) {
@@ -11,8 +14,12 @@ BetterPostUi.Components.Author = (function ($) {
 
         // Filter list of authors
         $('[name="better-post-ui-author-select-filter"]').on('input', function (e) {
-            var query = $(e.target).closest(':input').val();
-            this.filterList(query);
+            clearTimeout(inputTimer);
+
+            inputTimer = setTimeout(function () {
+                var query = $(e.target).closest(':input').val();
+                this.searchAuthor(query);
+            }.bind(this), 300);
         }.bind(this));
     }
 
@@ -25,6 +32,51 @@ BetterPostUi.Components.Author = (function ($) {
         $(element).closest('li').addClass('selected');
 
         $('[name="post_author_override"]').val($(element).closest('li').attr('data-user-id'));
+    };
+
+    Author.prototype.searchAuthor = function(q) {
+        var $container = $('.better-post-ui-author-select');
+
+        if (q.length === 0) {
+            $container.html('');
+            return;
+        }
+
+        $container.html('<li style="text-align:left;"><span class="spinner" style="visibility:visible;float:none;vertical-align:none;"></span></li>');
+
+        var data = {
+            action: 'better_post_ui_author',
+            q: q,
+            post_id: $('[name="post_ID"]').val()
+        };
+
+        $.post(ajaxurl, data, function (res) {
+            var html = '';
+
+            if (res.length === 0) {
+                $container.html('');
+                return;
+            }
+
+            $.each(res, function (index, user) {
+                html = html + '<li data-user-id="' + user.ID + '">';
+
+                if (user.data.profile_image !== null && user.data.profile_image.lenght > 0) {
+                    html = html + '<div class="profile-image" style="background-image:url(\'' + user.data.profile_image + '\');"></div>';
+                } else {
+                    html = html + '<div class="profile-image"></div>';
+                }
+
+                html = html + '<div class="profile-info">';
+                    html = html + '<span class="user-fullname">' + user.data.first_name + ' ' + user.data.last_name + '</span>';
+                    html = html + '<span class="user-login">' + user.data.user_login + '</span>';
+                html = html + '</div>';
+
+                html = html + '</li>';
+            });
+
+            $container.html(html);
+        }, 'JSON');
     };
 
     /**

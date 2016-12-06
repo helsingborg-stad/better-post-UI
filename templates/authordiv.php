@@ -8,19 +8,18 @@
 </div>
 <ul class="better-post-ui-author-select">
     <?php
-    foreach ($authors as $author) :
-    $selected = $curentSelectedAuthorId == $author->ID ? 'selected' : '';
+    if ($currentAuthor) :
     ?>
-    <li class="<?php echo $selected; ?>" data-user-id="<?php echo $author->ID; ?>">
-        <?php if (get_user_meta($author->ID, 'user_profile_picture', true)) : ?>
-            <div class="profile-image" style="background-image:url('<?php echo get_field('user_profile_picture', 'user_' . $author->ID); ?>');"></div>
+    <li class="selected" data-user-id="<?php echo $currentAuthor->ID; ?>">
+        <?php if (get_user_meta($currentAuthor->ID, 'user_profile_picture', true)) : ?>
+            <div class="profile-image" style="background-image:url('<?php echo get_field('user_profile_picture', 'user_' . $currentAuthor->ID); ?>');"></div>
         <?php else : ?>
             <div class="profile-image"></div>
         <?php endif; ?>
         <div class="profile-info">
-            <span class="user-fullname"><?php echo get_user_meta($author->ID, 'first_name', true); ?> <?php echo get_user_meta($author->ID, 'last_name', true); ?></span>
-            <span class="user-login"><?php echo $author->data->user_login; ?></span>
+            <span class="user-fullname"><?php echo get_user_meta($currentAuthor->ID, 'first_name', true); ?> <?php echo get_user_meta($currentAuthor->ID, 'last_name', true); ?></span>
+            <span class="user-login"><?php echo $currentAuthor->data->user_login; ?></span>
         </div>
     </li>
-    <?php endforeach; ?>
+    <?php endif; ?>
 </ul>

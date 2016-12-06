@@ -8,6 +8,7 @@ class Author
     {
         add_action('add_meta_boxes', array($this, 'authorDiv'));
         add_filter('default_hidden_meta_boxes', array($this, 'alwaysShowAuthorMetabox'), 10, 2);
+        add_action('wp_ajax_better_post_ui_author', array($this, 'searchAuthor'));
     }
 
     /**
@@ -36,15 +37,49 @@ class Author
         );
     }
 
-    public function authorDivContent()
+    public function searchAuthor()
     {
-        global $post;
+        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+            return;
+        }
 
+        add_action('pre_user_query', function ($query) {
+            $query->query_where = preg_replace('/\s+/', ' ', $query->query_where);
+            $query->query_where = str_replace(') ) AND ( mt1.meta_key', ') ) OR ( mt1.meta_key', $query->query_where);
+        });
+
+        // Bail if missing post_id or q
+        if (!isset($_POST['post_id']) || !isset($_POST['q'])) {
+            wp_send_json(array(
+                'error' => array('Missing post_id or q')
+            ));
+
+            wp_die();
+        }
+
+        $q = esc_attr($_POST['q']);
+
+        // Who
         $args = apply_filters('BetterPostUi/authors', array(
-            'who' => 'authors'
+            'who' => 'authors',
+            'search' => '*' . $q . '*',
+            'meta_query' => array(
+                'relation' => 'OR',
+                array(
+                    'key'     => 'first_name',
+                    'value'   => $q,
+                    'compare' => 'LIKE'
+                ),
+                array(
+                    'key'     => 'last_name',
+                    'value'   => $q,
+                    'compare' => 'LIKE'
+                )
+            )
         ));
 
-        $authors = get_users($args);
+        $authors = new \WP_User_Query($args);
+        $authors = (array) $authors->results;
 
         uasort($authors, function ($a, $b) use ($post) {
             if ($post->post_author == $a->ID) {
@@ -66,6 +101,25 @@ class Author
 
             return strcmp($name['a'], $name['b']);
         });
+
+        foreach ($authors as $author) {
+            $author->data->profile_image = get_field('user_profile_picture', 'user_' . $author->ID);
+            $author->data->first_name = get_user_meta($author->ID, 'first_name', true);
+            $author->data->last_name = get_user_meta($author->ID, 'last_name', true);
+        }
+
+        wp_send_json($authors);
+        wp_die();
+    }
+
+    public function authorDivContent()
+    {
+        global $post;
+
+        $currentAuthor = false;
+        if ($post->post_author) {
+            $currentAuthor = get_user_by('ID', $post->post_author);
+        }
 
         include BETTERPOSTUI_TEMPLATE_PATH . 'authordiv.php';
     }
