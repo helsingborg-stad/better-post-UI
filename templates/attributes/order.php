@@ -1,6 +1,7 @@
 <?php
 $orderPages = get_posts(array(
     'posts_per_page' => -1,
+    'post_status' => 'any',
     'post_type' => $post->post_type,
     'post_parent' => $post->post_parent,
     'orderby' => 'menu_order title',
