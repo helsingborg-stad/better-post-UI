@@ -9,7 +9,7 @@ $orderPages = get_posts(array(
 ));
 ?>
 <section>
-    <strong><?php _e('Order') ?></strong>
+    <strong><?php _e('Order', 'better-post-ui') ?></strong>
     <p style="margin-top:0;"><?php _e('Drag or click the arrows to reorder. The bold marked page is the post you are currently editing.', 'better-post-ui'); ?></p>
     <ul class="better-post-ui-menu-order-list">
         <?php foreach ($orderPages as $page) : ?>

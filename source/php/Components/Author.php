@@ -29,7 +29,7 @@ class Author
         remove_meta_box('authordiv', $postType, 'normal');
         add_meta_box(
             'authordiv',
-            __('Author'),
+            __('Author', 'better-post-ui'),
             array($this, 'authorDivContent'),
             $postType,
             'normal',
