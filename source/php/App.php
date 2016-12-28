@@ -22,6 +22,10 @@ class App
             return false;
         }
 
+        if (get_post_type() === 'attachment') {
+            return false;
+        }
+
         return in_array($pagenow, array('post.php', 'post-new.php'));
     }
 
