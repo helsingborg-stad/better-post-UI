@@ -1,4 +1,4 @@
-<?php $template = !empty($post->page_template) ? $post->page_template : false; ?>
+<?php $template = !empty($post->page_template) ? $post->page_template : false; global $post; ?>
 
 <section class="better-post-ui-template">
     <strong><?php _e('Template') ?></strong>
@@ -29,7 +29,7 @@
     $default_title = apply_filters( 'default_page_template_title',  __( 'Default Template' ), 'meta-box' );
     ?>
     <option value="default"><?php echo esc_html( $default_title ); ?></option>
-    <?php page_template_dropdown($template); ?>
+    <?php page_template_dropdown($template, $post->post_type); ?>
     </select>
 </section>
 
