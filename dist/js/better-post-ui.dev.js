@@ -10,7 +10,7 @@ BetterPostUi.Components.Author = (function ($) {
 
     function Author() {
         // Select author from list
-        $('.better-post-ui-author-select li').on('click', function (e) {
+        $(document).on('click', '.better-post-ui-author-select li', function (e) {
             this.setSelected(e.target);
         }.bind(this));
 
