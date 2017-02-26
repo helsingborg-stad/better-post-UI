@@ -23,7 +23,7 @@ class PageAttributes
         remove_meta_box('pageparentdiv', $postType, 'normal');
         add_meta_box(
             'pageparentdiv',
-            'page' == $postType ? __('Page Attributes') : __('Attributes'),
+            'page' == $postType ? __('Page Attributes', 'better-post-ui') : __('Attributes', 'better-post-ui'),
             array($this, 'pageAttributesDivContent'),
             $postType,
             'side',

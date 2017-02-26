@@ -4,7 +4,7 @@
 <input type="hidden" name="post_author_override" value="<?php echo $curentSelectedAuthorId; ?>">
 
 <div class="better-post-ui-author-select-filter">
-    <input type="text" placeholder="<?php _e('Search'); ?>" name="better-post-ui-author-select-filter">
+    <input type="text" placeholder="<?php _e('Search', 'better-post-ui'); ?>" name="better-post-ui-author-select-filter">
 </div>
 <ul class="better-post-ui-author-select">
     <?php
