@@ -12,10 +12,10 @@ class PageAttributes
 
     public function pageAttributesDiv()
     {
+        global $wp_meta_boxes;
         $postType = get_post_type();
 
-        // Checks if authordiv should exist
-        if (!post_type_supports($postType, 'page-attributes')) {
+        if (!$this->hasKey('pageparentdiv', $wp_meta_boxes)) {
             return;
         }
 
@@ -29,6 +29,29 @@ class PageAttributes
             'side',
             'default'
         );
+    }
+
+    /**
+     * Check if array has key recursivly
+     * @param  string  $needle   Array key to find
+     * @param  array   $haystack Array to search
+     * @return boolean
+     */
+    public function hasKey(string $needle, array $haystack) : bool
+    {
+        foreach ($haystack as $key => $value) {
+            if ($key === $needle) {
+                return true;
+            }
+
+            if (is_array($value)) {
+                if ($x = $this->hasKey($needle, $value)) {
+                    return $x;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**
