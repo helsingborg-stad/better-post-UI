@@ -8,6 +8,6 @@ if (count(get_page_templates($post)) > 0 && get_option('page_for_posts') != $pos
     include('attributes/template.php');
 }
 
-if (get_current_screen()->action != 'add') {
+if (get_current_screen()->action != 'add' && $postTypeObject->hierarchical) {
     include('attributes/order.php');
 }
