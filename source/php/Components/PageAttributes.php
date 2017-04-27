@@ -20,7 +20,12 @@ class PageAttributes
         }
 
         // Remove the default pageparentdiv and add our own
+        remove_meta_box('pageparentdiv', $postType, 'side');
         remove_meta_box('pageparentdiv', $postType, 'normal');
+
+        if ($postType == 'attachment') {
+            return;
+        }
         add_meta_box(
             'pageparentdiv',
             'page' == $postType ? __('Page Attributes') : __('Attributes'),
