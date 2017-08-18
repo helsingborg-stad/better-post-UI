@@ -23,9 +23,17 @@ class PageAttributes
         remove_meta_box('pageparentdiv', $postType, 'side');
         remove_meta_box('pageparentdiv', $postType, 'normal');
 
-        if ($postType == 'attachment') {
+        //Show only on pages or other post types defined by filter
+        $enabledPostTypes = array('page','post');
+
+        if(has_filter('BetterPostUi/PageAttributes/EnabledPostTypes')) {
+            $enabledPostTypes = apply_filters( 'BetterPostUi/PageAttributes/EnabledPostTypes', $enabledPostTypes);
+        }
+
+        if(! in_array($postType, $enabledPostTypes)) {
             return;
         }
+
         add_meta_box(
             'pageparentdiv',
             'page' == $postType ? __('Page Attributes') : __('Attributes'),
