@@ -9,61 +9,6 @@ class Author
         add_action('add_meta_boxes', array($this, 'authorDiv'));
         add_filter('default_hidden_meta_boxes', array($this, 'alwaysShowAuthorMetabox'), 10, 2);
         add_action('wp_ajax_better_post_ui_author', array($this, 'searchAuthor'));
-        add_action('admin_init', array($this, 'filterInternalLinkSearch'));
-    }
-
-    public function filterInternalLinkSearch()
-    {
-        if (defined('DOING_AJAX') && DOING_AJAX && isset($_POST['action'])) {
-            $actions = array(
-                'menu-quick-search',
-                'wp-link-ajax'
-            );
-
-            if (in_array($_POST['action'], $actions)) {
-                add_filter('wp_link_query_args', array($this, 'unsupressPostsSearch'));
-                add_filter('posts_search', array($this, 'limitLinkSearch'), 10, 2);
-            }
-        }
-    }
-
-    /**
-     * Limits link search to "post title" field
-     * @param  string   $search   Search SQL for WHERE clause
-     * @param  obj      $wp_query The current WP_Query object
-     * @return string             Modified search string
-     */
-    public function limitLinkSearch($search, $wp_query)
-    {
-        global $wpdb;
-
-        if (empty($search)) {
-            return $search;
-        }
-
-        $query_vars = $wp_query->query_vars;
-        $search = '';
-        $and = '';
-
-        foreach((array)$query_vars['search_terms'] as $term) {
-            $search .= "{$searchand}(($wpdb->posts.post_title LIKE '%{$wpdb->esc_like($term)}%'))";
-            $and = ' AND ';
-        }
-
-        $search = (!empty($search)) ? " AND ({$search}) " : $search;
-
-        return $search;
-    }
-
-    /**
-     * Unsupress posts search filters
-     * @param  array $args Default post search args
-     * @return array       Modified post search args
-     */
-    public function unsupressPostsSearch($args)
-    {
-        $args['suppress_filters'] = false;
-        return $args;
     }
 
     /**
