@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Better Post UI\n"
-"POT-Creation-Date: 2017-09-21 10:04+0200\n"
-"PO-Revision-Date: 2017-09-21 10:04+0200\n"
+"POT-Creation-Date: 2017-09-21 10:38+0200\n"
+"PO-Revision-Date: 2017-09-21 10:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -20,13 +20,29 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: source/php/Components/Author.php:32
+#: source/php/Components/Author.php:32 source/php/Components/Comments.php:68
 msgid "Author"
 msgstr "Författare"
 
-#: source/php/Components/Comments.php:33
+#: source/php/Components/Comments.php:35
 msgid "Select post type"
 msgstr "Välj posttyp"
+
+#: source/php/Components/Comments.php:69
+msgid "Comment"
+msgstr "Kommentar"
+
+#: source/php/Components/Comments.php:70
+msgid "Post type"
+msgstr "Posttyp"
+
+#: source/php/Components/Comments.php:71
+msgid "Response"
+msgstr "Som svar till"
+
+#: source/php/Components/Comments.php:72
+msgid "Date"
+msgstr "Datum"
 
 #: source/php/Components/PageAttributes.php:39
 msgid "Page Attributes"
