@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Better Post UI\n"
-"POT-Creation-Date: 2017-09-21 10:38+0200\n"
+"POT-Creation-Date: 2017-09-21 13:02+0200\n"
 "PO-Revision-Date: 2016-10-03 13:50+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -43,6 +43,21 @@ msgstr ""
 #: source/php/Components/Comments.php:72
 msgid "Date"
 msgstr ""
+
+#: source/php/Components/Media.php:19
+msgid "PDF"
+msgstr ""
+
+#: source/php/Components/Media.php:19
+msgid "Manage PDF"
+msgstr ""
+
+#: source/php/Components/Media.php:19
+#, php-format
+msgid "PDF <span class=\"count\">(%s)</span>"
+msgid_plural "PDF <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: source/php/Components/PageAttributes.php:39
 msgid "Page Attributes"
