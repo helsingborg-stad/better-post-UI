@@ -14,6 +14,7 @@ class App
         new \BetterPostUi\Components\Order();
         new \BetterPostUi\Components\InternalLinks();
         new \BetterPostUi\Components\Comments();
+        new \BetterPostUi\Components\Media();
     }
 
     public function isEditPage()
