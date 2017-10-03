@@ -20,7 +20,7 @@ class InternalLinks
             if (in_array($_POST['action'], $actions)) {
                 add_filter('wp_link_query_args', array($this, 'unsupressPostsSearch'));
                 add_filter('posts_search', array($this, 'limitLinkSearch'), 10, 2);
-                add_filter('wp_link_query', array($this, 'updateLinkInfo'));
+                add_filter('wp_link_query', array($this, 'updateLinkInfo'), 10, 2);
             }
         }
     }
