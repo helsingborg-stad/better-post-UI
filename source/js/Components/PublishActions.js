@@ -29,7 +29,8 @@ BetterPostUi.Components.Publish = (function ($) {
             if (attemptedDate > currentDate && postVisibility == 'private') {
                 setTimeout(function() {
                     $('#publish').val(postL10n.schedule);
-                }, 50);
+                }, 10);
+
             }
         });
     };
