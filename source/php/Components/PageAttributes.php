@@ -15,7 +15,7 @@ class PageAttributes
         global $wp_meta_boxes;
         $postType = get_post_type();
 
-        if (!$this->hasKey('pageparentdiv', $wp_meta_boxes)) {
+        if (!is_post_type_hierarchical($postType)) {
             return;
         }
 
