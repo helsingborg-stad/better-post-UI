@@ -309,3 +309,12 @@ input[data-action="better-post-ui-parent-search"],
         background-color: #e8e8e8; }
     .better-post-ui-menu-order-list li button:last-of-type {
       left: 15px; }
+
+#wp-link li {
+  position: !important; }
+
+#wp-link .item-title,
+#wp-link .item-info {
+  text-transform: capitalize !important;
+  width: 100% !important;
+  position: static !important; }

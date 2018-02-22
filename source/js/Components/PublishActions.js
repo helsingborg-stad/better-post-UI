@@ -9,7 +9,31 @@ BetterPostUi.Components.Publish = (function ($) {
         }
 
         this.initDatepicker();
+        this.handleEvents();
     }
+
+    Publish.prototype.handleEvents = function () {
+        $('.save-timestamp', '#timestampdiv').on('click', function (event) {
+            var attemptedDate,
+                currentDate,
+                postVisibility = $('#post-visibility-select').find('input:radio:checked').val(),
+                aa = $('#aa').val(),
+                mm = $('#mm').val(),
+                jj = $('#jj').val(),
+                hh = $('#hh').val(),
+                mn = $('#mn').val();
+
+            attemptedDate = new Date(aa, mm - 1, jj, hh, mn);
+            currentDate = new Date($('#cur_aa').val(), $('#cur_mm').val() -1, $('#cur_jj').val(), $('#cur_hh').val(), $('#cur_mn').val());
+
+            if (attemptedDate > currentDate && postVisibility == 'private') {
+                setTimeout(function() {
+                    $('#publish').val(postL10n.schedule);
+                }, 10);
+
+            }
+        });
+    };
 
     Publish.prototype.initDatepicker = function () {
         $('#aa, #mm, #jj').hide();

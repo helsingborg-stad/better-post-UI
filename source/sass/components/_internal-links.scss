@@ -1,0 +1,12 @@
+#wp-link {
+	li {
+		position: !important;
+	}
+
+	.item-title,
+	.item-info {
+		text-transform: capitalize !important;
+		width: 100% !important;
+		position: static !important;
+	}
+}
