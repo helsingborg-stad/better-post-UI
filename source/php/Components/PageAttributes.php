@@ -15,22 +15,25 @@ class PageAttributes
         global $wp_meta_boxes;
         $postType = get_post_type();
 
-        if (!is_post_type_hierarchical($postType)) {
-            return;
-        }
-
         // Remove the default pageparentdiv and add our own
         remove_meta_box('pageparentdiv', $postType, 'side');
         remove_meta_box('pageparentdiv', $postType, 'normal');
 
-        //Show only on pages or other post types defined by filter
-        $enabledPostTypes = array('page','post');
-
-        if(has_filter('BetterPostUi/PageAttributes/EnabledPostTypes')) {
-            $enabledPostTypes = apply_filters( 'BetterPostUi/PageAttributes/EnabledPostTypes', $enabledPostTypes);
+        //Show only on posts that are hierarchical and public
+        $enabledPostTypes = array();
+        foreach ((array) get_post_types(array('hierarchical' => true), 'object') as $postType) {
+            if ($postType->public === true) {
+                $enabledPostTypes[] = $postType->name;
+            }
         }
 
-        if(! in_array($postType, $enabledPostTypes)) {
+        //Allow to filter on new post types
+        if (has_filter('BetterPostUi/PageAttributes/EnabledPostTypes')) {
+            $enabledPostTypes = apply_filters('BetterPostUi/PageAttributes/EnabledPostTypes', $enabledPostTypes);
+        }
+
+        //Test if this should be shown
+        if (!in_array($postType, $enabledPostTypes)) {
             return;
         }
 
