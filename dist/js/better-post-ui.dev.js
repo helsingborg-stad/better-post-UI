@@ -109,6 +109,9 @@ BetterPostUi.Components = BetterPostUi.Components || {};
 
 BetterPostUi.Components.Order = (function ($) {
 
+    var ajaxPostTimer;
+    var ajaxData;
+
     function Order() {
         this.init();
 
@@ -145,8 +148,38 @@ BetterPostUi.Components.Order = (function ($) {
 
     Order.prototype.reindex = function() {
         $('.better-post-ui-menu-order-list').find('li').each(function (index, element) {
-            $(this).find('[name*="menu_order"]').val(index);
+            $(this).find('[name*="menu_order"]').val(index); // Sets default behaviour
+            $(this).attr('data-order-id', index); // Async driven data
         });
+
+        this.asyncSave();
+    };
+
+    Order.prototype.asyncSave = function() {
+
+        //Clear timer
+        clearTimeout(ajaxPostTimer);
+
+        //Var declerations
+        var pageOrder = [];
+
+        //Get new data
+        $('.better-post-ui-menu-order-list').find('li').each(function (index, element) {
+            pageOrder[index] = {postId: $(element).attr('data-post-id'), orderId: $(element).attr('data-order-id')};
+        });
+
+        //Define data post object
+        this.ajaxData = {
+            'action': 'better_post_ui_order_pages',
+            'jsonPageOrder': JSON.stringify(pageOrder)
+        };
+
+        //Delay the actual sending of the ajax, in case of further changes by the user
+        ajaxPostTimer = window.setTimeout(function() {
+            $.post(ajaxurl, this.ajaxData, function(response) {
+                alert('Got this from the server: ' + response);
+            });
+        }.bind(this), 700);
     };
 
     return new Order();
