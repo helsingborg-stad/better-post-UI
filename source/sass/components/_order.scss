@@ -1,6 +1,8 @@
 .better-post-ui-menu-order-list {
     margin: 0;
     padding: 0;
+    max-height: 400px;
+    overflow: auto;
 
     * {
         box-sizing: border-box;

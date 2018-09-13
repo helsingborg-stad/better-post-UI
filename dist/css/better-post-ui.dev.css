@@ -271,7 +271,9 @@ input[data-action="better-post-ui-parent-search"],
 
 .better-post-ui-menu-order-list {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  max-height: 400px;
+  overflow: auto; }
   .better-post-ui-menu-order-list * {
     box-sizing: border-box; }
   .better-post-ui-menu-order-list li {
