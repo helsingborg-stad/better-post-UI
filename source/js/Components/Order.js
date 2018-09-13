@@ -70,9 +70,7 @@ BetterPostUi.Components.Order = (function ($) {
 
         //Delay the actual sending of the ajax, in case of further changes by the user
         ajaxPostTimer = window.setTimeout(function() {
-            $.post(ajaxurl, this.ajaxData, function(response) {
-                alert('Got this from the server: ' + response);
-            });
+            $.post(ajaxurl, this.ajaxData, function(response) {});
         }.bind(this), 700);
     };
 
