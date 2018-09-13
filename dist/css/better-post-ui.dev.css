@@ -275,6 +275,7 @@ input[data-action="better-post-ui-parent-search"],
   .better-post-ui-menu-order-list * {
     box-sizing: border-box; }
   .better-post-ui-menu-order-list li {
+    cursor: move;
     position: relative;
     background-color: #fafafa;
     border: 1px solid #ddd;

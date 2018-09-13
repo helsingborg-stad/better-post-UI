@@ -12,7 +12,7 @@ class Order
     public function saveMenuOrder()
     {
         if (!isset($_POST['jsonPageOrder']) || empty($_POST['jsonPageOrder'])) {
-            wp_send_json(array('status' => true, 'message' => __e('Empty ordering details.')), 200);
+            wp_send_json(array('status' => false, 'message' => __e('Empty ordering details.')), 200);
             return;
         }
 
