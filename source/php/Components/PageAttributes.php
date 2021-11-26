@@ -8,6 +8,18 @@ class PageAttributes
     {
         add_action('add_meta_boxes', array($this, 'pageAttributesDiv'));
         add_action('wp_ajax_better_post_ui_search_parent', array($this, 'searchParent'));
+
+        add_action('init', [$this, 'remove_page_attribute_support']);
+    }
+
+    /**
+     * Remove page attribute in new editor.
+     *
+     * @return void
+     */
+    public function removePageAttributeSupport()
+    {
+        remove_post_type_support('page', 'page-attributes');
     }
 
     public function pageAttributesDiv()
