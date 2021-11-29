@@ -19,17 +19,19 @@ class PageAttributes
      */
     public function removePageAttributeSupport()
     {
-        remove_post_type_support('page', 'page-attributes');
+        $postTypes = get_post_types();
+        if (is_array($postTypes) && !empty($postTypes)) {
+            foreach ($postTypes as $postType) {
+                remove_post_type_support($postType, 'page-attributes');
+            }
+        }
     }
 
     public function pageAttributesDiv()
     {
         global $wp_meta_boxes;
-        $postType = get_post_type();
 
-        // Remove the default pageparentdiv and add our own
-        remove_meta_box('pageparentdiv', $postType, 'side');
-        remove_meta_box('pageparentdiv', $postType, 'normal');
+        $postType = get_post_type();
 
         //Show only on posts that are hierarchical and public
         $enabledPostTypes = array();
