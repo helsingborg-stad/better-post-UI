@@ -9,7 +9,7 @@ class PageAttributes
         add_action('add_meta_boxes', array($this, 'pageAttributesDiv'));
         add_action('wp_ajax_better_post_ui_search_parent', array($this, 'searchParent'));
 
-        add_action('init', [$this, 'remove_page_attribute_support']);
+        add_action('init', array($this, 'remove_page_attribute_support'));
     }
 
     /**
