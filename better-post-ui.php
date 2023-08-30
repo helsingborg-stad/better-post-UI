@@ -24,14 +24,11 @@ define('BETTERPOSTUI_TEMPLATE_PATH', BETTERPOSTUI_PATH . 'templates/');
 
 load_plugin_textdomain('better-post-ui', false, plugin_basename(dirname(__FILE__)) . '/languages');
 
-require_once BETTERPOSTUI_PATH . 'source/php/Vendor/Psr4ClassLoader.php';
+// Autoload from plugin
+if (file_exists(BETTERPOSTUI_PATH . 'vendor/autoload.php')) {
+    require_once BETTERPOSTUI_PATH . 'vendor/autoload.php';
+}
 require_once BETTERPOSTUI_PATH . 'Public.php';
-
-// Instantiate and register the autoloader
-$loader = new BetterPostUi\Vendor\Psr4ClassLoader();
-$loader->addPrefix('BetterPostUi', BETTERPOSTUI_PATH);
-$loader->addPrefix('BetterPostUi', BETTERPOSTUI_PATH . 'source/php/');
-$loader->register();
 
 // Start application
 new BetterPostUi\App();

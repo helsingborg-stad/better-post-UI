@@ -4,6 +4,7 @@
   "description": "Improves the UI and UX of the WordPress admin post form.",
   "main": "",
   "scripts": {
+    "build": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
