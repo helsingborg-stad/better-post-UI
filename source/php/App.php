@@ -42,7 +42,9 @@ class App
             return;
         }
 
-        wp_enqueue_style('better-post-ui', BETTERPOSTUI_URL . '/dist/css/better-post-ui.min.css', null, '1.0.0');
+        wp_enqueue_style('better-post-ui', BETTERPOSTUI_URL . '/dist/'
+        .\BetterPostUi\Helper\CacheBust::name('css/better-post-ui.css'),
+        array(), '1.0.0');
     }
 
     /**
@@ -55,6 +57,8 @@ class App
             return;
         }
 
-        wp_enqueue_script('better-post-ui', BETTERPOSTUI_URL . '/dist/js/better-post-ui.min.js', null, '1.0.0', true);
+        wp_enqueue_script('better-post-ui', BETTERPOSTUI_URL . '/dist/'
+        .\BetterPostUi\Helper\CacheBust::name('js/better-post-ui.js'),
+        array(), '1.0.0');
     }
 }

@@ -4,8 +4,10 @@
   "description": "Improves the UI and UX of the WordPress admin post form.",
   "main": "",
   "scripts": {
-    "build": "",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "cross-env NODE_ENV=development webpack --watch",
+    "build:dev": "cross-env NODE_ENV=development webpack",
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
@@ -18,13 +20,34 @@
   },
   "homepage": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-cssnano": "^2.1.2",
-    "gulp-plumber": "^1.1.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.3.2",
-    "gulp-uglify": "^1.5.4"
+    "@babel/core": "^7.11.0",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/polyfill": "^7.10.4",
+    "@babel/preset-env": "^7.11.0",
+    "autoprefixer": "^9.8.6",
+    "babel-loader": "^8.0.6",
+    "browser-sync-webpack-plugin": "^2.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "dotenv": "^8.0.0",
+    "import-glob-loader": "^1.1.0",
+    "mini-css-extract-plugin": "^0.7.0",
+    "sass": "^1.26.10",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-object-fit-images": "^1.1.2",
+    "sass-loader": "^7.1.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.2",
+    "webpack-config-utils": "^2.3.1",
+    "webpack-fix-style-only-entries": "^0.3.0",
+    "webpack-manifest-plugin": "^2.0.4",
+    "webpack-notifier": "^1.7.0",
+    "browser-sync": "^2.26.7",
+    "jquery": "^3.5.0",
+    "webpack-shell-plugin": "^0.5.0"
   }
 }
