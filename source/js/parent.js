@@ -1,7 +1,5 @@
-BetterPostUi = BetterPostUi || {};
-BetterPostUi.Components = BetterPostUi.Components || {};
-
-BetterPostUi.Components.Parent = (function ($) {
+const BetterPostUi = {};
+BetterPostUi.Parent = (function ($) {
 
     var typingTimer;
 

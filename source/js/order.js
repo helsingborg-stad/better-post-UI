@@ -1,13 +1,15 @@
-BetterPostUi = BetterPostUi || {};
-BetterPostUi.Components = BetterPostUi.Components || {};
+const BetterPostUi = {};
+BetterPostUi.Order = (function ($) {
 
-BetterPostUi.Components.Order = (function ($) {
+   
 
     var ajaxPostTimer;
     var ajaxData;
 
     function Order() {
         this.init();
+        
+        
 
         $('[data-action="better-post-ui-order-up"]').on('click', function (e) {
             var li = $(e.target).parents('li').first()[0];
@@ -23,7 +25,7 @@ BetterPostUi.Components.Order = (function ($) {
     Order.prototype.init = function () {
         $('.better-post-ui-menu-order-list').sortable({
             stop: function (e, ui) {
-                BetterPostUi.Components.Order.reindex();
+                BetterPostUi.Order.reindex();
             }
         }).bind(this);
     };

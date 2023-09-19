@@ -1,7 +1,5 @@
-BetterPostUi = BetterPostUi || {};
-BetterPostUi.Components = BetterPostUi.Components || {};
-
-BetterPostUi.Components.Publish = (function ($) {
+const BetterPostUi = {};
+BetterPostUi.Publish = (function ($) {
 
     function Publish() {
         if ($('#misc-publishing-actions').length === 0) {

@@ -57,8 +57,13 @@ class App
             return;
         }
 
-        wp_enqueue_script('better-post-ui', BETTERPOSTUI_URL . '/dist/'
-        .\BetterPostUi\Helper\CacheBust::name('js/better-post-ui.js'),
-        array(), '1.0.0');
+        foreach(['main', 'author', 'order', 'parent', 'publish-actions'] as $file) {
+            wp_enqueue_script('better-post-ui-' . $file, BETTERPOSTUI_URL . '/dist/'
+            .\BetterPostUi\Helper\CacheBust::name('js/' . $file . '.js'),
+            array(), 
+            '1.0.0', [
+                'in_footer' => true,
+            ]);
+        }
     }
 }

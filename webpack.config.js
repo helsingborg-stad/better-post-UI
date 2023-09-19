@@ -20,7 +20,11 @@ module.exports = {
      * Add your entry files here
      */
     entry: {
-        'js/better-post-ui': './source/js/better-post-ui.js',
+        'js/main': './source/js/main.js', 
+        'js/author': './source/js/author.js',
+        'js/order': './source/js/order.js',
+        'js/parent': './source/js/parent.js',
+        'js/publish-actions': './source/js/publish-actions.js',
         'css/better-post-ui': './source/sass/better-post-ui.scss',        
     },
     /**

@@ -1,7 +1,5 @@
-BetterPostUi = BetterPostUi || {};
-BetterPostUi.Components = BetterPostUi.Components || {};
-
-BetterPostUi.Components.Author = (function ($) {
+const BetterPostUi = {};
+BetterPostUi.Author = (function ($) {
 
     var inputTimer = false;
     var isTyping = false;
