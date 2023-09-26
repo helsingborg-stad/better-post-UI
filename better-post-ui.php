@@ -4,7 +4,7 @@
  * Plugin Name:       Better Post UI
  * Plugin URI:        (#plugin_url#)
  * Description:       Improves the UI and UX of the WordPress admin post form.
- * Version:           1.0.0
+ * Version: 2.0.0
  * Author:            Kristoffer Svanmark
  * Author URI:        (#plugin_author_url#)
  * License:           MIT
