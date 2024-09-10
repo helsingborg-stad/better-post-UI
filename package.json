@@ -1,5 +1,5 @@
 {
-    "name": "better-post-ui",
+    "name": "@helsingborg-stad/better-post-ui",
     "version": "3.0.3",
     "description": "Improves the UI and UX of the WordPress admin post form.",
     "main": "",
@@ -11,14 +11,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate.git"
+        "url": "https://github.com/helsingborg-stad/better-post-ui.git"
     },
     "author": "Kristoffer Svanmark",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate/issues"
+        "url": "https://github.com/helsingborg-stad/better-post-ui/issues"
     },
-    "homepage": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate",
+    "files": ["dist/"],
+    "homepage": "https://github.com/helsingborg-stad/better-post-ui",
     "devDependencies": {
         "@babel/core": "^7.11.0",
         "@babel/plugin-proposal-class-properties": "^7.10.4",
