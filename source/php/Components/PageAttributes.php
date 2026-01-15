@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BetterPostUi\Components;
 
 class PageAttributes
@@ -36,9 +38,11 @@ class PageAttributes
         //Show only on posts that are hierarchical and public
         $enabledPostTypes = array();
         foreach ((array) get_post_types(array('hierarchical' => true), 'object') as $postTypeLoop) {
-            if ($postTypeLoop->public === true) {
-                $enabledPostTypes[] = $postTypeLoop->name;
+            if ($postTypeLoop->public !== true) {
+                continue;
             }
+
+            $enabledPostTypes[] = $postTypeLoop->name;
         }
 
         //Allow to filter on new post types
@@ -57,7 +61,7 @@ class PageAttributes
             array($this, 'pageAttributesDivContent'),
             $postType,
             'side',
-            'default'
+            'default',
         );
     }
 
@@ -111,7 +115,7 @@ class PageAttributes
         $search = new \WP_Query(array(
             'post_type' => $postType,
             'post_status' => array('publish', 'future', 'draft', 'pending', 'private'),
-            's' => $query
+            's' => $query,
         ));
 
         if (defined('DOING_AJAX') && DOING_AJAX) {

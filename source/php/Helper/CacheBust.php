@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BetterPostUi\Helper;
 
 class CacheBust
@@ -36,7 +38,7 @@ class CacheBust
         if (file_exists($jsonPath)) {
             return json_decode(file_get_contents($jsonPath), true);
         } elseif (WP_DEBUG) {
-            echo '<div style="color:red">Error: Assets not built. Go to ' . BETTERPOSTUI_PATH . ' and run npmm run build. See '. BETTERPOSTUI_PATH . 'README.md for more info.</div>';
+            echo '<div style="color:red">Error: Assets not built. Go to ' . BETTERPOSTUI_PATH . ' and run npmm run build. See ' . BETTERPOSTUI_PATH . 'README.md for more info.</div>';
         }
     }
 }

@@ -1,11 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BetterPostUi;
+
+use WpUtilService\Features\Enqueue\EnqueueManager;
 
 class App
 {
-    public function __construct()
-    {
+    public function __construct(
+        private EnqueueManager $wpEnqueue,
+    ) {
         add_action('admin_enqueue_scripts', array($this, 'enqueueStyles'));
         add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'));
 
@@ -42,9 +47,7 @@ class App
             return;
         }
 
-        wp_enqueue_style('better-post-ui', BETTERPOSTUI_URL . '/dist/'
-        .\BetterPostUi\Helper\CacheBust::name('css/better-post-ui.css'),
-        array(), '1.0.0');
+        $this->wpEnqueue->add('css/better-post-ui.css', [], '1.0.0');
     }
 
     /**
@@ -57,13 +60,13 @@ class App
             return;
         }
 
-        foreach(['main', 'author', 'order', 'parent', 'publish-actions'] as $file) {
-            wp_enqueue_script('better-post-ui-' . $file, BETTERPOSTUI_URL . '/dist/'
-            .\BetterPostUi\Helper\CacheBust::name('js/' . $file . '.js'),
-            array(), 
-            '1.0.0', [
-                'in_footer' => true,
-            ]);
+        foreach (['main', 'author', 'order', 'parent', 'publish-actions'] as $file) {
+            $this->wpEnqueue
+                ->add('js/' . $file . '.js', [], '1.0.0')
+                ->with()
+                ->data(null, [
+                    'in_footer' => true,
+                ]);
         }
     }
 }

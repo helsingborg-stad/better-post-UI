@@ -12,6 +12,8 @@
  * Text Domain:       better-post-ui
  * Domain Path:       /languages
  */
+use WpService\Implementations\NativeWpService;
+use WpUtilService\WpUtilService;
 
  // Protect agains direct file access
 if (! defined('WPINC')) {
@@ -30,5 +32,8 @@ if (file_exists(BETTERPOSTUI_PATH . 'vendor/autoload.php')) {
 }
 require_once BETTERPOSTUI_PATH . 'Public.php';
 
+$wpService = new NativeWpService();
+$wpUtilService = new WpUtilService($wpService);
+
 // Start application
-new BetterPostUi\App();
+new BetterPostUi\App($wpUtilService->enqueue(__DIR__));

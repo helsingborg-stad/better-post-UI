@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BetterPostUi\Components;
 
 class Author
@@ -21,7 +23,7 @@ class Author
         $postTypeObject = get_post_type_object($postType);
 
         // Checks if authordiv should exist
-        if (!post_type_supports($postType, 'author') || (!is_super_admin() && !current_user_can($postTypeObject->cap->edit_others_posts))) {
+        if (!post_type_supports($postType, 'author') || !is_super_admin() && !current_user_can($postTypeObject->cap->edit_others_posts)) {
             return;
         }
 
@@ -33,7 +35,7 @@ class Author
             array($this, 'authorDivContent'),
             $postType,
             'normal',
-            'default'
+            'default',
         );
     }
 
@@ -43,7 +45,7 @@ class Author
             return;
         }
 
-        add_action('pre_user_query', function ($query) {
+        add_action('pre_user_query', static function ($query) {
             $query->query_where = preg_replace('/\s+/', ' ', $query->query_where);
             $query->query_where = str_replace(') ) AND ( mt1.meta_key', ') ) OR ( mt1.meta_key', $query->query_where);
         });
@@ -51,7 +53,7 @@ class Author
         // Bail if missing post_id or q
         if (!isset($_POST['post_id']) || !isset($_POST['q'])) {
             wp_send_json(array(
-                'error' => array('Missing post_id or q')
+                'error' => array('Missing post_id or q'),
             ));
 
             wp_die();
@@ -66,29 +68,29 @@ class Author
             'meta_query' => array(
                 'relation' => 'OR',
                 array(
-                    'key'     => 'first_name',
-                    'value'   => $q,
-                    'compare' => 'LIKE'
+                    'key' => 'first_name',
+                    'value' => $q,
+                    'compare' => 'LIKE',
                 ),
                 array(
-                    'key'     => 'last_name',
-                    'value'   => $q,
-                    'compare' => 'LIKE'
-                )
-            )
+                    'key' => 'last_name',
+                    'value' => $q,
+                    'compare' => 'LIKE',
+                ),
+            ),
         ));
 
         $authors = new \WP_User_Query($args);
         $authors = (array) $authors->results;
 
-        uasort($authors, function ($a, $b) use ($post) {
+        uasort($authors, static function ($a, $b) use ($post) {
             if ($post->post_author == $a->ID) {
                 return -1;
             }
 
             $name = array(
                 'a' => trim(get_user_meta($a->ID, 'first_name', true) . ' ' . get_user_meta($a->ID, 'last_name', true)),
-                'b' => trim(get_user_meta($b->ID, 'first_name', true) . ' ' . get_user_meta($b->ID, 'last_name', true))
+                'b' => trim(get_user_meta($b->ID, 'first_name', true) . ' ' . get_user_meta($b->ID, 'last_name', true)),
             );
 
             if (empty($name['a'])) {
@@ -136,10 +138,8 @@ class Author
             return $hidden;
         }
 
-        $hidden = array_filter($hidden, function ($item) {
+        return array_filter($hidden, static function ($item) {
             return $item != 'authordiv';
         });
-
-        return $hidden;
     }
 }
