@@ -62,11 +62,7 @@ class App
 
         foreach (['main', 'author', 'order', 'parent', 'publish-actions'] as $file) {
             $this->wpEnqueue
-                ->add('js/' . $file . '.js', [], '1.0.0')
-                ->with()
-                ->data(null, [
-                    'in_footer' => true,
-                ]);
+                ->add('js/' . $file . '.js', [], '1.0.0');
         }
     }
 }
