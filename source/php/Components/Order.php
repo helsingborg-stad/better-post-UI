@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BetterPostUi\Components;
 
 class Order
@@ -23,13 +25,13 @@ class Order
             $wpdb->update(
                 $wpdb->posts,
                 array(
-                    'menu_order' => $menuObject->orderId
+                    'menu_order' => $menuObject->orderId,
                 ),
                 array(
-                    'ID' => $menuObject->postId
+                    'ID' => $menuObject->postId,
                 ),
                 array('%d'),
-                array('%d')
+                array('%d'),
             );
         }
 

@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BetterPostUi\Components;
 
-class Comments {
-
-	public function __construct()
-	{
-		add_action('restrict_manage_comments', array($this, 'commentsFilter'));
-		add_action('pre_get_comments', array($this, 'queryFilter'));
-		add_filter('manage_edit-comments_columns', array($this, 'tableColumns'));
+class Comments
+{
+    public function __construct()
+    {
+        add_action('restrict_manage_comments', array($this, 'commentsFilter'));
+        add_action('pre_get_comments', array($this, 'queryFilter'));
+        add_filter('manage_edit-comments_columns', array($this, 'tableColumns'));
         add_action('manage_comments_custom_column', array($this, 'tableColumnsContent'), 10, 2);
-	}
+    }
 
     /**
      * Filter comments by post type
@@ -21,15 +23,15 @@ class Comments {
         $post_types = get_post_types();
 
         foreach ($post_types as &$post_type) {
-        	if (post_type_supports($post_type, 'comments')) {
-        		$post_type_obj = get_post_type_object($post_type);
-        		$post_type = array(
-        						'name' => $post_type_obj->name,
-        						'label' => $post_type_obj->label
-        					);
-        	} else {
-        		unset($post_types[$post_type]);
-        	}
+            if (post_type_supports($post_type, 'comments')) {
+                $post_type_obj = get_post_type_object($post_type);
+                $post_type = array(
+                    'name' => $post_type_obj->name,
+                    'label' => $post_type_obj->label,
+                );
+            } else {
+                unset($post_types[$post_type]);
+            }
         }
 
         echo '<select name="post_type"><option value="">' . __('Select post type', 'better-post-ui') . '</option>';
@@ -67,9 +69,9 @@ class Comments {
             'cb' => '',
             'author' => __('Author'),
             'comment' => __('Comment'),
-            'post_type' =>  __('Post type', 'better-post-ui'),
+            'post_type' => __('Post type', 'better-post-ui'),
             'response' => __('Response', 'better-post-ui'),
-            'date' => __('Date')
+            'date' => __('Date'),
         );
     }
 
@@ -81,11 +83,11 @@ class Comments {
      */
     public function tableColumnsContent($column, $postId)
     {
-    	if ($column == 'post_type') {
-    		$comment = get_comment($postId, OBJECT);
-    		$post_type_slug = get_post_type($comment->comment_post_ID);
-    		$post_type_obj = get_post_type_object($post_type_slug);
-    		echo $post_type_obj->label;
-    	}
+        if ($column == 'post_type') {
+            $comment = get_comment($postId, OBJECT);
+            $post_type_slug = get_post_type($comment->comment_post_ID);
+            $post_type_obj = get_post_type_object($post_type_slug);
+            echo $post_type_obj->label;
+        }
     }
 }

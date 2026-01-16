@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BetterPostUi\Components;
 
 class Media
 {
     public function __construct()
     {
-    	add_filter('post_mime_types', array($this, 'customMimeTypes'));
+        add_filter('post_mime_types', array($this, 'customMimeTypes'));
     }
 
     /**

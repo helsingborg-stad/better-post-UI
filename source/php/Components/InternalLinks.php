@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BetterPostUi\Components;
 
 class InternalLinks
 {
     public function __construct()
     {
-      add_action('admin_init', array($this, 'filterInternalLinkSearch'));
+        add_action('admin_init', array($this, 'filterInternalLinkSearch'));
     }
 
     public function filterInternalLinkSearch()
@@ -14,7 +16,7 @@ class InternalLinks
         if (defined('DOING_AJAX') && DOING_AJAX && isset($_POST['action'])) {
             $actions = array(
                 'menu-quick-search',
-                'wp-link-ajax'
+                'wp-link-ajax',
             );
 
             if (in_array($_POST['action'], $actions)) {
@@ -33,29 +35,30 @@ class InternalLinks
      */
     public function updateLinkInfo($results, $query)
     {
-        $results = array_map(function ($result) {
-            // Get post type
-            $post_type = get_post_type($result['ID']);
-            $obj = get_post_type_object($post_type);
-            // Add post type to result info
-            $result['info'] = '<strong>' . $obj->labels->singular_name . '</strong>';
-            // Get post parents
-            $ancestors = get_post_ancestors($result['ID']);
-            $ancestors = array_reverse($ancestors);
+        return array_map(
+            static function ($result) {
+                // Get post type
+                $post_type = get_post_type($result['ID']);
+                $obj = get_post_type_object($post_type);
+                // Add post type to result info
+                $result['info'] = '<strong>' . $obj->labels->singular_name . '</strong>';
+                // Get post parents
+                $ancestors = get_post_ancestors($result['ID']);
+                $ancestors = array_reverse($ancestors);
 
-            // Add post parents path to info string
-            if (is_array($ancestors) && !empty($ancestors)) {
-                $parent_string = implode(' / ', array_map(function ($ancestor) {
-                  return get_the_title($ancestor);
-                }, $ancestors)) . ' / '. $result['title'];
+                // Add post parents path to info string
+                if (is_array($ancestors) && !empty($ancestors)) {
+                    $parent_string = implode(' / ', array_map(static function ($ancestor) {
+                        return get_the_title($ancestor);
+                    }, $ancestors)) . ' / ' . $result['title'];
 
-                $result['info'] = $result['info'] . ': ' . $parent_string;
-            }
+                    $result['info'] = $result['info'] . ': ' . $parent_string;
+                }
 
-            return $result;
-        }, $results);
-
-        return $results;
+                return $result;
+            },
+            $results,
+        );
     }
 
     /**
@@ -76,14 +79,12 @@ class InternalLinks
         $search = '';
         $and = '';
 
-        foreach((array)$query_vars['search_terms'] as $term) {
+        foreach ((array) $query_vars['search_terms'] as $term) {
             $search .= "{$searchand}(($wpdb->posts.post_title LIKE '%{$wpdb->esc_like($term)}%'))";
             $and = ' AND ';
         }
 
-        $search = (!empty($search)) ? " AND ({$search}) " : $search;
-
-        return $search;
+        return !empty($search) ? " AND ({$search}) " : $search;
     }
 
     /**
@@ -96,5 +97,4 @@ class InternalLinks
         $args['suppress_filters'] = false;
         return $args;
     }
-
 }
