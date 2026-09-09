@@ -12,7 +12,7 @@
     "require": {
         "php": ">=8.2",
         "helsingborg-stad/wpservice": "^2.0",
-        "helsingborg-stad/wputilservice": "^0.2.44"
+        "helsingborg-stad/wputilservice": "^0.3"
     },
     "autoload": {
         "psr-4": {
